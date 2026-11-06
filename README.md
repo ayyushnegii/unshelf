@@ -3,6 +3,12 @@
 > **Keep the idea. Lose the scroll.**  
 > Turn saved Instagram Reels into clean, searchable Markdown notes: full transcript, key highlights, and links. Free and local-first.
 
+**Repository:** https://github.com/ayyushnegii/unshelf
+
+```bash
+git clone https://github.com/ayyushnegii/unshelf.git
+```
+
 ---
 
 ## Why Unshelf?
