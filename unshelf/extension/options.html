@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unshelf — Settings</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/options.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="options-top">
+    <a class="brand" href="popup.html" aria-label="Unshelf">
+      <span class="brand-mark" aria-hidden="true">U</span>
+      <span class="brand-copy">
+        <span class="brand-name">UNSHELF</span>
+        <span class="brand-sub">keep the idea</span>
+      </span>
+    </a>
+    <div class="options-top-right">
+      <span class="top-note">Settings are stored locally</span>
+      <button class="icon-btn" id="closeBtn" type="button" aria-label="Close settings" title="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="options-main">
+    <section class="options-hero">
+      <p class="eyebrow">Setup</p>
+      <h1 class="display">Make the shelf <em>yours.</em></h1>
+      <p class="hero-copy">One small setup. After this, Unshelf lives in your toolbar. No account, no cloud, no subscription.</p>
+      <div class="status-strip" id="bridgeStatus">
+        <span class="status-dot"></span>
+        <span id="bridgeStatusText">Checking the local bridge…</span>
+        <span class="mono" id="bridgeStatusMeta"></span>
+      </div>
+    </section>
+
+    <div class="settings-grid">
+      <div class="settings-column">
+        <section class="settings-section">
+          <div class="section-number">01</div>
+          <div class="section-body">
+            <h2>Transcription engine</h2>
+            <p class="section-copy">Groq is faster and uses a free API key. Local Whisper is private and needs no key, but the first run downloads a model.</p>
+
+            <div class="engine-grid" role="radiogroup" aria-label="Transcription engine">
+              <label class="engine-card">
+                <input type="radio" name="provider" value="auto">
+                <span class="engine-head">Auto <span class="chip chip-orange">recommended</span></span>
+                <span class="engine-desc">Groq when a key is saved. Local Whisper otherwise.</span>
+              </label>
+              <label class="engine-card">
+                <input type="radio" name="provider" value="groq">
+                <span class="engine-head">Groq <span class="chip">free key</span></span>
+                <span class="engine-desc">Fast hosted Whisper. Audio leaves your machine.</span>
+              </label>
+              <label class="engine-card">
+                <input type="radio" name="provider" value="local">
+                <span class="engine-head">Local <span class="chip">private</span></span>
+                <span class="engine-desc">Runs on your CPU. No key, no upload, slower.</span>
+              </label>
+            </div>
+
+            <div class="field key-field">
+              <label for="groqKey">Groq API key <span class="label-note">optional</span></label>
+              <div class="key-row">
+                <input class="input" id="groqKey" type="password" autocomplete="off" spellcheck="false" placeholder="gsk_…">
+                <button class="btn btn-sm" id="toggleKey" type="button">Show</button>
+                <button class="btn btn-sm" id="testGroqKey" type="button">Test</button>
+              </div>
+              <p class="hint">Free plan: about 2,000 requests/day and 8 hours of audio/day — plenty for 20–50 Reels. <a href="https://console.groq.com/keys" target="_blank" rel="noreferrer">Get a key ↗</a></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="model">Local model</label>
+                <select class="select" id="model">
+                  <option value="tiny">Tiny · 75 MB, fastest</option>
+                  <option value="base">Base · 145 MB</option>
+                  <option value="small">Small · 460 MB, recommended</option>
+                </select>
+                <p class="hint">Only used when the local engine runs.</p>
+              </div>
+              <div class="field">
+                <label for="language">Language</label>
+                <select class="select" id="language">
+                  <option value="">Detect automatically</option>
+                  <option value="en">English</option>
+                  <option value="hi">Hindi</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="pt">Portuguese</option>
+                  <option value="ar">Arabic</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-number">02</div>
+          <div class="section-body">
+            <h2>Instagram access</h2>
+            <p class="section-copy">Public Reels usually work without login. If Instagram says the Reel is unavailable, let the bridge borrow cookies from the browser where you are logged in.</p>
+            <div class="field">
+              <label for="cookiesBrowser">Use cookies from</label>
+              <select class="select" id="cookiesBrowser">
+                <option value="none">No browser cookies</option>
+                <option value="chrome">Chrome</option>
+                <option value="edge">Edge</option>
+                <option value="firefox">Firefox</option>
+                <option value="brave">Brave</option>
+              </select>
+              <p class="hint">Cookies are read locally by yt-dlp and never sent anywhere except Instagram.</p>
+            </div>
+            <div class="note-box">
+              <strong>Privacy note</strong>
+              <span>Groq receives the Reel audio. Local Whisper keeps everything on this machine. Your API key is stored in Chrome's local extension storage, not synced.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-number">03</div>
+          <div class="section-body">
+            <h2>Local bridge</h2>
+            <p class="section-copy">The extension talks to a tiny helper on this computer. It does the Instagram download and, if chosen, the transcription.</p>
+            <div class="field">
+              <label for="bridgeUrl">Bridge address</label>
+              <div class="bridge-row">
+                <input class="input" id="bridgeUrl" type="url" spellcheck="false" placeholder="http://127.0.0.1:8765">
+                <button class="btn btn-sm" id="testBridge" type="button">Test</button>
+              </div>
+              <p class="hint" id="bridgeTestResult">Start it with <code>unshelf\start-unshelf.bat</code>.</p>
+            </div>
+            <div class="command-box">
+              <div class="command-head"><span>Terminal</span><button class="text-link" id="copyCommand" type="button">Copy command</button></div>
+              <code>unshelf\start-unshelf.bat</code>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="settings-aside">
+        <div class="aside-card">
+          <p class="eyebrow">Current setup</p>
+          <dl class="summary-list">
+            <div><dt>Engine</dt><dd id="summaryEngine">—</dd></div>
+            <div><dt>Model</dt><dd id="summaryModel">—</dd></div>
+            <div><dt>Bridge</dt><dd id="summaryBridge">—</dd></div>
+            <div><dt>yt-dlp</dt><dd id="summaryYtdlp">—</dd></div>
+            <div><dt>Notes</dt><dd id="summaryNotes">0</dd></div>
+          </dl>
+        </div>
+
+        <div class="aside-card">
+          <p class="eyebrow">Data</p>
+          <p class="aside-copy">Notes live in this Chrome profile. Export them before clearing history or switching browsers.</p>
+          <div class="aside-actions">
+            <button class="btn btn-sm" id="exportNotes" type="button">Export .md</button>
+            <button class="btn btn-sm btn-danger" id="clearNotes" type="button">Clear</button>
+          </div>
+        </div>
+
+        <div class="aside-quote">
+          <p>“Saved is not the same as learned.”</p>
+          <span>— the reason this exists</span>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="save-bar">
+      <div>
+        <span class="save-status" id="saveStatus">All changes are local.</span>
+      </div>
+      <button class="btn btn-primary" id="saveBtn" type="button">Save changes</button>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/options.js"></script>
+</body>
+</html>

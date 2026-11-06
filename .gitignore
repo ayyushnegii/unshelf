@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv cache
+.uv-cache/
+
+# Bridge temp/logs/models (models are large and locally downloaded)
+unshelf/bridge/tmp/
+unshelf/bridge/logs/
+unshelf/bridge/__pycache__/
+
+# Local Whisper models (~460 MB each — user downloads on first run)
+unshelf/bridge/models/
+
+# Test data
+data/
+
+# Chrome test profiles
+.chrome-test-profile/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Node (only used for testing)
+node_modules/
+
+# Misc scratch
+test_cdp.mjs

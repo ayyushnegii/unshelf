@@ -1,0 +1,8 @@
+# Unshelf Bridge Requirements
+# Pinned for verified compatibility on Windows (Python 3.12)
+
+faster-whisper==1.2.1
+av==16.0.0
+yt-dlp>=2026.10.26
+huggingface_hub>=0.24.0
+

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unshelf</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <button class="brand" id="brandBtn" type="button" aria-label="Unshelf home">
+      <span class="brand-mark" aria-hidden="true">U</span>
+      <span class="brand-copy">
+        <span class="brand-name">UNSHELF</span>
+        <span class="brand-sub">keep the idea</span>
+      </span>
+    </button>
+    <div class="top-actions">
+      <button class="status-pill" id="bridgePill" type="button" title="Bridge status">
+        <span class="status-dot" id="bridgeDot"></span>
+        <span id="bridgeLabel">Checking</span>
+      </button>
+      <button class="icon-btn" id="settingsBtn" type="button" aria-label="Settings" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9c.12.38.5.72.92.84H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.16z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Unshelf sections">
+    <button class="tab is-active" id="tabCapture" type="button" role="tab" aria-selected="true" data-tab="capture">
+      Capture
+    </button>
+    <button class="tab" id="tabBatch" type="button" role="tab" aria-selected="false" data-tab="batch">
+      Batch <span class="tab-badge" id="batchBadge" hidden>0</span>
+    </button>
+    <button class="tab" id="tabHistory" type="button" role="tab" aria-selected="false" data-tab="history">
+      History
+    </button>
+  </nav>
+
+  <main id="main">
+    <section class="view is-active" id="viewCapture" role="tabpanel" aria-labelledby="tabCapture">
+      <div id="captureMount"></div>
+    </section>
+    <section class="view" id="viewBatch" role="tabpanel" aria-labelledby="tabBatch">
+      <div id="batchMount"></div>
+    </section>
+    <section class="view" id="viewHistory" role="tabpanel" aria-labelledby="tabHistory">
+      <div id="historyMount"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Local-first · no account · no cloud</span>
+    <span id="footerStats">0 notes</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/popup.js"></script>
+</body>
+</html>
